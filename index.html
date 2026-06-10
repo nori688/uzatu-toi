@@ -478,7 +478,8 @@
     
     errorDiv.textContent = '';
     const message = `Атым: ${name}\nҚатысу: ${attendance}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    const phoneNumber = '77056209493';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   }
 
