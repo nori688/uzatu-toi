@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ізет қызымыздың ұзату тойы</title>
+  <title>Ұзату той</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -338,11 +338,11 @@
   <!-- Hero -->
   <div class="inv-hero">
     <div class="inv-main-banner">
-      <img src="https://i.pinimg.com/736x/16/5a/f3/165af30f39522b73da422879ce54cd05.jpg" alt="Ізеттің ұзату тойы">
+      <img src="https://i.pinimg.com/736x/16/5a/f3/165af30f39522b73da422879ce54cd05.jpg" alt="Ұзату той">
     </div>
 
     <div class="inv-names">
-      Ізеттің ұзату тойы
+      Ұзату той
     </div>
     <div class="inv-tagline">Ізет қызымыздың ұзату тойының қадірлі қонағы болыңыздар</div>
     <div class="inv-parents">Той иесі: Асылбек & Анар</div>
@@ -366,7 +366,7 @@
     <div class="inv-divider">✦ ✦ ✦</div>
     <div class="inv-detail-row">
       <span class="inv-detail-icon">🗓</span>
-      <div class="inv-detail-text"><strong>22 маусым 2026 жыл</strong>Жексенбі</div>
+      <div class="inv-detail-text"><strong>22 маусым 2026 жыл</strong>Дүйсенбі</div>
     </div>
     <div class="inv-detail-row">
       <span class="inv-detail-icon">🕖</span>
@@ -411,7 +411,7 @@
 </div>
 
 <audio id="bg-music" preload="none" loop autoplay>
-  <source src="music/toy-music.mp3" type="audio/mpeg">
+  <source src="music/Ernar_Amandyq_-_Keipker_79407191.mp3--online-audio-convert.com.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -423,58 +423,4 @@
     document.getElementById('opt-no').classList.toggle('selected', val === 'Келе алмаймын');
   }
 
-  function submitRsvp() {
-    var name = document.getElementById('guest-name').value.trim();
-    var err = document.getElementById('form-error');
-    err.textContent = '';
-    if (!name) { err.textContent = 'Аты-жөніңізді енгізіңіз'; return; }
-    if (!attendance) { err.textContent = 'Қатысу түрін таңдаңыз'; return; }
-    var msg = '🎉 ЖАҢА ЖАУАП%0A👤 Қонақ: ' + encodeURIComponent(name) + '%0A✅ Қатысу: ' + encodeURIComponent(attendance);
-    var phone = '77056209493';
-    window.open('https://wa.me/' + phone + '?text=' + msg, '_blank');
-  }
-
-  var audio = document.getElementById('bg-music');
-  var btn = document.getElementById('music-toggle');
-  var playing = true;
-  
-  audio.volume = 0.5;
-  
-  audio.play().catch(function() {
-    playing = false;
-    btn.innerHTML = '♪ &nbsp;Музыка қосу';
-    btn.classList.remove('playing');
-  });
-  
-  btn.addEventListener('click', function() {
-    if (playing) {
-      audio.pause();
-      btn.innerHTML = '♪ &nbsp;Музыка қосу';
-      btn.classList.remove('playing');
-      playing = false;
-    } else {
-      audio.play().then(function() {
-        btn.innerHTML = '♪ &nbsp;Музыка өшіру';
-        btn.classList.add('playing');
-        playing = true;
-      }).catch(function() {});
-    }
-  });
-
-  function updateTimer() {
-    var target = new Date('2026-06-22T19:00:00+05:00').getTime();
-    var diff = Math.max(0, target - Date.now());
-    var d = Math.floor(diff / 86400000);
-    var h = Math.floor((diff % 86400000) / 3600000);
-    var m = Math.floor((diff % 3600000) / 60000);
-    var s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('days').textContent    = String(d).padStart(2,'0');
-    document.getElementById('hours').textContent   = String(h).padStart(2,'0');
-    document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-    document.getElementById('seconds').textContent = String(s).padStart(2,'0');
-  }
-  setInterval(updateTimer, 1000);
-  updateTimer();
-</script>
-</body>
-</html>
+|
