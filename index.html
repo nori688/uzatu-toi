@@ -39,19 +39,26 @@
     .inv-hero {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 1.5rem 1.5rem 1.5rem;
       margin-bottom: 14px;
       text-align: center;
       border: 0.5px solid var(--accent-muted);
     }
 
-    .inv-photo-placeholder {
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      border: 3px solid var(--accent-muted);
+    /* Main Banner */
+    .inv-main-banner {
+      width: 100%;
+      border-radius: var(--radius);
       overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 0.5px solid var(--accent-muted);
+    }
+
+    .inv-main-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.95;
     }
 
     .inv-names {
@@ -62,29 +69,24 @@
       color: var(--accent);
       line-height: 1.1;
       letter-spacing: 0.02em;
-    }
-
-    .inv-ampersand {
-      font-size: 1.8rem;
-      color: var(--accent);
-      display: block;
-      margin: 0.2rem 0;
+      margin-bottom: 0.5rem;
     }
 
     .inv-tagline {
       font-size: 0.65rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent-muted);
-      margin-top: 0.7rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
     }
 
     .inv-parents {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--accent-muted);
-      margin-top: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--text);
+      margin-top: 0.3rem;
+      letter-spacing: 0.03em;
     }
 
     /* Cards */
@@ -154,7 +156,7 @@
       font-size: 0.58rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent-muted);
+      color: var(--text);
       margin-top: 4px;
     }
 
@@ -185,6 +187,7 @@
       color: var(--accent);
       display: block;
       letter-spacing: 0.03em;
+      margin-bottom: 2px;
     }
 
     /* Music button */
@@ -217,7 +220,7 @@
     .inv-map-btn {
       background: transparent;
       border: 1px solid var(--accent-muted);
-      color: var(--accent-muted);
+      color: var(--text);
       border-radius: var(--radius);
       padding: 9px 12px;
       font-family: 'Montserrat', sans-serif;
@@ -240,7 +243,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent-muted);
+      color: var(--text);
       margin-bottom: 7px;
       text-align: left;
     }
@@ -259,6 +262,7 @@
       outline: none;
     }
     .inv-input:focus { border-color: var(--accent); }
+    .inv-input::placeholder { color: var(--accent-muted); }
 
     .inv-radio-row {
       display: flex;
@@ -274,7 +278,7 @@
       text-align: center;
       cursor: pointer;
       font-size: 0.82rem;
-      color: var(--accent-muted);
+      color: var(--text);
       background: #331A1E;
       transition: all 0.2s;
       user-select: none;
@@ -324,34 +328,8 @@
 
   <!-- Hero -->
   <div class="inv-hero">
-    <svg viewBox="0 0 340 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:1.2rem">
-      <path d="M170 16 C150 4, 130 26, 110 16 C90 6, 70 24, 50 16 C30 8, 15 18, 5 16" stroke="var(--accent-muted)" stroke-width="0.8" fill="none" opacity="0.6"/>
-      <path d="M170 16 C190 4, 210 26, 230 16 C250 6, 270 24, 290 16 C310 8, 325 18, 335 16" stroke="var(--accent-muted)" stroke-width="0.8" fill="none" opacity="0.6"/>
-      <circle cx="170" cy="16" r="3" fill="var(--accent-muted)" opacity="0.7"/>
-      <circle cx="148" cy="10" r="2" fill="var(--accent-muted)" opacity="0.5"/>
-      <circle cx="192" cy="10" r="2" fill="var(--accent-muted)" opacity="0.5"/>
-    </svg>
-
-    <div class="inv-photo-placeholder">
-      <svg viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-        <circle cx="95" cy="95" r="95" fill="#3D1E23"/>
-        <circle cx="95" cy="95" r="93" fill="none" stroke="var(--accent-muted)" stroke-width="1.5" opacity="0.4"/>
-        <!-- Bride dress -->
-        <path d="M56 175 Q64 148 76 130 Q88 148 96 175Z" fill="var(--accent)" opacity="0.6"/>
-        <rect x="70" y="94" width="14" height="37" rx="6" fill="var(--accent)" opacity="0.5"/>
-        <circle cx="77" cy="83" r="13" fill="var(--accent)" opacity="0.7"/>
-        <ellipse cx="77" cy="76" rx="13" ry="7" fill="#4A2A2F" opacity="0.8"/>
-        <!-- Veil -->
-        <path d="M64 75 Q77 60 90 75" stroke="var(--accent-muted)" stroke-width="1" fill="none" opacity="0.4"/>
-        <!-- Decorative elements -->
-        <circle cx="85" cy="116" r="9" fill="var(--accent)" opacity="0.4"/>
-        <circle cx="83" cy="114" r="5" fill="var(--accent)" opacity="0.3"/>
-        <!-- Corner dots -->
-        <circle cx="22" cy="22" r="4" fill="var(--accent-muted)" opacity="0.22"/>
-        <circle cx="168" cy="22" r="4" fill="var(--accent-muted)" opacity="0.22"/>
-        <circle cx="22" cy="168" r="4" fill="var(--accent-muted)" opacity="0.22"/>
-        <circle cx="168" cy="168" r="4" fill="var(--accent-muted)" opacity="0.22"/>
-      </svg>
+    <div class="inv-main-banner">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=600&fit=crop" alt="Кыз узату">
     </div>
 
     <div class="inv-names">
@@ -396,9 +374,9 @@
       <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка қосу</button>
     </div>
     <div class="inv-map-buttons">
-      <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/org/213397209233?si=xhznaa6fmmw7jx3rwrznz2qmpg', '_blank')">Yandex Maps</button>
-      <button class="inv-map-btn" onclick="window.open('https://2gis.kz/geo/70030076202454552', '_blank')">2GIS</button>
-      <button class="inv-map-btn" onclick="window.open('https://maps.google.com/?q=Ералхан+Ата+Сынтас', '_blank')">Google Maps</button>
+      <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/?ll=69.568271%2C41.897649&z=16&mode=search&text=41.897649%2C69.568271', '_blank')">Yandex Maps</button>
+      <button class="inv-map-btn" onclick="window.open('https://2gis.kz/geo/69.568271,41.897649', '_blank')">2GIS</button>
+      <button class="inv-map-btn" onclick="window.open('https://www.google.com/maps/search/?api=1&query=41.897649,69.568271', '_blank')">Google Maps</button>
     </div>
   </div>
 
