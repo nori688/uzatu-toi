@@ -3,17 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ізет & Серік | Той шақыруы</title>
+  <title>Ізеттің ұзату тойы</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #1F0A0D;
+      --card-bg: #291216;
+      --text: #F5EFEA;
+      --accent: #D9A0A6;
+      --accent-muted: #8C6266;
+      --radius: 2px;
+    }
+
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #F4F4F4;
+      background: var(--bg);
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      color: #3a3a3a;
+      color: var(--text);
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -28,12 +37,12 @@
 
     /* Hero */
     .inv-hero {
-      background: #FAFAFA;
-      border-radius: 2px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
       padding: 2.5rem 1.5rem 2rem;
       margin-bottom: 14px;
       text-align: center;
-      border: 0.5px solid #E8E8E8;
+      border: 0.5px solid var(--accent-muted);
     }
 
     .inv-photo-placeholder {
@@ -41,7 +50,7 @@
       height: 190px;
       border-radius: 50%;
       margin: 0 auto 1.5rem;
-      border: 3px solid #D0D0D0;
+      border: 3px solid var(--accent-muted);
       overflow: hidden;
     }
 
@@ -50,14 +59,14 @@
       font-size: 2.8rem;
       font-weight: 300;
       font-style: italic;
-      color: #5C1D24;
+      color: var(--accent);
       line-height: 1.1;
       letter-spacing: 0.02em;
     }
 
     .inv-ampersand {
       font-size: 1.8rem;
-      color: #5C1D24;
+      color: var(--accent);
       display: block;
       margin: 0.2rem 0;
     }
@@ -66,7 +75,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: #888888;
+      color: var(--accent-muted);
       margin-top: 0.7rem;
     }
 
@@ -74,15 +83,15 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem;
       font-style: italic;
-      color: #999999;
+      color: var(--accent-muted);
       margin-top: 0.6rem;
     }
 
     /* Cards */
     .inv-card {
-      background: #FFFFFF;
-      border: 0.5px solid #E8E8E8;
-      border-radius: 2px;
+      background: var(--card-bg);
+      border: 0.5px solid var(--accent-muted);
+      border-radius: var(--radius);
       padding: 1.4rem 1.4rem;
       margin-bottom: 14px;
       text-align: center;
@@ -93,7 +102,7 @@
       font-size: 1.2rem;
       font-weight: 400;
       font-style: italic;
-      color: #5C1D24;
+      color: var(--accent);
       margin-bottom: 0.7rem;
       letter-spacing: 0.04em;
     }
@@ -103,7 +112,7 @@
       align-items: center;
       gap: 8px;
       margin: 0 0 1rem;
-      color: #D0D0D0;
+      color: var(--accent-muted);
       font-size: 10px;
       letter-spacing: 0.2em;
     }
@@ -112,7 +121,7 @@
       content: '';
       flex: 1;
       height: 0.5px;
-      background: #E8E8E8;
+      background: var(--accent-muted);
     }
 
     /* Timer */
@@ -128,7 +137,7 @@
       align-items: center;
       background: transparent;
       border: none;
-      border-bottom: 0.5px solid #D0D0D0;
+      border-bottom: 0.5px solid var(--accent-muted);
       border-radius: 0;
       padding: 10px 4px 8px;
     }
@@ -137,7 +146,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem;
       font-weight: 300;
-      color: #5C1D24;
+      color: var(--accent);
       line-height: 1;
     }
 
@@ -145,7 +154,7 @@
       font-size: 0.58rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #999999;
+      color: var(--accent-muted);
       margin-top: 4px;
     }
 
@@ -160,7 +169,7 @@
 
     .inv-detail-icon {
       font-size: 1.2rem;
-      color: #5C1D24;
+      color: var(--accent);
       margin-top: 1px;
       flex-shrink: 0;
     }
@@ -168,12 +177,12 @@
     .inv-detail-text {
       font-size: 0.85rem;
       line-height: 1.6;
-      color: #3a3a3a;
+      color: var(--text);
     }
 
     .inv-detail-text strong {
       font-weight: 400;
-      color: #5C1D24;
+      color: var(--accent);
       display: block;
       letter-spacing: 0.03em;
     }
@@ -181,9 +190,9 @@
     /* Music button */
     .inv-music-btn {
       background: transparent;
-      border: 0.5px solid #D0D0D0;
-      color: #5C1D24;
-      border-radius: 2px;
+      border: 0.5px solid var(--accent-muted);
+      color: var(--accent);
+      border-radius: var(--radius);
       padding: 9px 24px;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.72rem;
@@ -194,8 +203,36 @@
       transition: background 0.2s, color 0.2s;
       margin-top: 0.8rem;
     }
-    .inv-music-btn:hover { background: #F0F0F0; }
-    .inv-music-btn.playing { background: #5C1D24; color: #fff; }
+    .inv-music-btn:hover { background: var(--accent-muted); color: var(--text); }
+    .inv-music-btn.playing { background: var(--accent); color: var(--bg); }
+
+    /* Map buttons */
+    .inv-map-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .inv-map-btn {
+      background: transparent;
+      border: 1px solid var(--accent-muted);
+      color: var(--accent-muted);
+      border-radius: var(--radius);
+      padding: 9px 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .inv-map-btn:hover {
+      background: var(--accent-muted);
+      color: var(--bg);
+      border-color: var(--accent-muted);
+    }
 
     /* RSVP */
     .inv-rsvp-label {
@@ -203,7 +240,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #999999;
+      color: var(--accent-muted);
       margin-bottom: 7px;
       text-align: left;
     }
@@ -211,17 +248,17 @@
     .inv-input {
       width: 100%;
       padding: 11px 14px;
-      border: 0.5px solid #E8E8E8;
-      border-radius: 2px;
+      border: 1px solid var(--accent-muted);
+      border-radius: var(--radius);
       font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
       font-weight: 300;
-      background: #FAFAFA;
-      color: #3a3a3a;
+      background: #331A1E;
+      color: var(--text);
       margin-bottom: 1rem;
       outline: none;
     }
-    .inv-input:focus { border-color: #5C1D24; }
+    .inv-input:focus { border-color: var(--accent); }
 
     .inv-radio-row {
       display: flex;
@@ -231,43 +268,43 @@
 
     .inv-radio-opt {
       flex: 1;
-      border: 0.5px solid #E8E8E8;
-      border-radius: 2px;
+      border: 1px solid var(--accent-muted);
+      border-radius: var(--radius);
       padding: 11px 8px;
       text-align: center;
       cursor: pointer;
       font-size: 0.82rem;
-      color: #5C1D24;
-      background: #FAFAFA;
+      color: var(--accent-muted);
+      background: #331A1E;
       transition: all 0.2s;
       user-select: none;
     }
     .inv-radio-opt.selected {
-      background: #5C1D24;
-      color: #fff;
-      border-color: #5C1D24;
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
     }
 
     .inv-submit {
       width: 100%;
-      background: #5C1D24;
-      color: #FAFAFA;
+      background: var(--accent);
+      color: var(--bg);
       border: none;
-      border-radius: 2px;
+      border-radius: var(--radius);
       padding: 14px;
       font-family: 'Montserrat', sans-serif;
       font-size: 0.75rem;
-      font-weight: 400;
+      font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .inv-submit:hover { background: #461520; }
+    .inv-submit:hover { background: #C48A91; }
 
     .inv-error {
       font-size: 0.78rem;
-      color: #b34040;
+      color: #E89B9B;
       text-align: center;
       margin-top: 10px;
       min-height: 1rem;
@@ -275,29 +312,11 @@
 
     .inv-footer {
       text-align: center;
-      color: #D0D0D0;
+      color: var(--accent-muted);
       font-size: 1.1rem;
       letter-spacing: 0.3em;
       margin-top: 0.5rem;
     }
-
-    /* Map button */
-    .inv-map-btn {
-      background: #5C1D24;
-      color: #FAFAFA;
-      border: none;
-      border-radius: 2px;
-      padding: 11px 24px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 0.8rem;
-    }
-    .inv-map-btn:hover { background: #461520; }
   </style>
 </head>
 <body>
@@ -306,49 +325,40 @@
   <!-- Hero -->
   <div class="inv-hero">
     <svg viewBox="0 0 340 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:1.2rem">
-      <path d="M170 16 C150 4, 130 26, 110 16 C90 6, 70 24, 50 16 C30 8, 15 18, 5 16" stroke="#D0D0D0" stroke-width="0.8" fill="none" opacity="0.6"/>
-      <path d="M170 16 C190 4, 210 26, 230 16 C250 6, 270 24, 290 16 C310 8, 325 18, 335 16" stroke="#D0D0D0" stroke-width="0.8" fill="none" opacity="0.6"/>
-      <circle cx="170" cy="16" r="3" fill="#D0D0D0" opacity="0.7"/>
-      <circle cx="148" cy="10" r="2" fill="#D0D0D0" opacity="0.5"/>
-      <circle cx="192" cy="10" r="2" fill="#D0D0D0" opacity="0.5"/>
+      <path d="M170 16 C150 4, 130 26, 110 16 C90 6, 70 24, 50 16 C30 8, 15 18, 5 16" stroke="var(--accent-muted)" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <path d="M170 16 C190 4, 210 26, 230 16 C250 6, 270 24, 290 16 C310 8, 325 18, 335 16" stroke="var(--accent-muted)" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <circle cx="170" cy="16" r="3" fill="var(--accent-muted)" opacity="0.7"/>
+      <circle cx="148" cy="10" r="2" fill="var(--accent-muted)" opacity="0.5"/>
+      <circle cx="192" cy="10" r="2" fill="var(--accent-muted)" opacity="0.5"/>
     </svg>
 
     <div class="inv-photo-placeholder">
       <svg viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-        <circle cx="95" cy="95" r="95" fill="#E8E8E8"/>
-        <circle cx="95" cy="95" r="93" fill="none" stroke="#D0D0D0" stroke-width="1.5" opacity="0.4"/>
-        <!-- Dress (woman) -->
-        <path d="M56 175 Q64 148 76 130 Q88 148 96 175Z" fill="#5C1D24" opacity="0.42"/>
-        <rect x="70" y="94" width="14" height="37" rx="6" fill="#5C1D24" opacity="0.48"/>
-        <circle cx="77" cy="83" r="13" fill="#8B5A7F" opacity="0.72"/>
-        <ellipse cx="77" cy="76" rx="13" ry="7" fill="#5C1D24" opacity="0.58"/>
-        <!-- Bouquet -->
-        <circle cx="85" cy="116" r="9" fill="#e8a0a0" opacity="0.42"/>
-        <circle cx="83" cy="114" r="5" fill="#e87070" opacity="0.38"/>
-        <circle cx="87" cy="117" r="5" fill="#f0b0b0" opacity="0.38"/>
-        <!-- Suit (man) -->
-        <path d="M98 175 L98 130 Q110 142 122 130 L122 175Z" fill="#5C1D24" opacity="0.42"/>
-        <rect x="100" y="94" width="18" height="37" rx="5" fill="#5C1D24" opacity="0.48"/>
-        <circle cx="109" cy="83" r="13" fill="#8B5A7F" opacity="0.72"/>
-        <ellipse cx="109" cy="76" rx="11" ry="6" fill="#5C1D24" opacity="0.58"/>
-        <path d="M107 104 L109 118 L111 104Z" fill="#D0D0D0" opacity="0.58"/>
-        <!-- Ring -->
-        <circle cx="93" cy="112" r="3.5" fill="none" stroke="#D0D0D0" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="95" cy="95" r="95" fill="#3D1E23"/>
+        <circle cx="95" cy="95" r="93" fill="none" stroke="var(--accent-muted)" stroke-width="1.5" opacity="0.4"/>
+        <!-- Bride dress -->
+        <path d="M56 175 Q64 148 76 130 Q88 148 96 175Z" fill="var(--accent)" opacity="0.6"/>
+        <rect x="70" y="94" width="14" height="37" rx="6" fill="var(--accent)" opacity="0.5"/>
+        <circle cx="77" cy="83" r="13" fill="var(--accent)" opacity="0.7"/>
+        <ellipse cx="77" cy="76" rx="13" ry="7" fill="#4A2A2F" opacity="0.8"/>
+        <!-- Veil -->
+        <path d="M64 75 Q77 60 90 75" stroke="var(--accent-muted)" stroke-width="1" fill="none" opacity="0.4"/>
+        <!-- Decorative elements -->
+        <circle cx="85" cy="116" r="9" fill="var(--accent)" opacity="0.4"/>
+        <circle cx="83" cy="114" r="5" fill="var(--accent)" opacity="0.3"/>
         <!-- Corner dots -->
-        <circle cx="22" cy="22" r="4" fill="#D0D0D0" opacity="0.22"/>
-        <circle cx="168" cy="22" r="4" fill="#D0D0D0" opacity="0.22"/>
-        <circle cx="22" cy="168" r="4" fill="#D0D0D0" opacity="0.22"/>
-        <circle cx="168" cy="168" r="4" fill="#D0D0D0" opacity="0.22"/>
+        <circle cx="22" cy="22" r="4" fill="var(--accent-muted)" opacity="0.22"/>
+        <circle cx="168" cy="22" r="4" fill="var(--accent-muted)" opacity="0.22"/>
+        <circle cx="22" cy="168" r="4" fill="var(--accent-muted)" opacity="0.22"/>
+        <circle cx="168" cy="168" r="4" fill="var(--accent-muted)" opacity="0.22"/>
       </svg>
     </div>
 
     <div class="inv-names">
-      Ізет
-      <span class="inv-ampersand">✦</span>
-      Серік
+      Ізеттің ұзату тойы
     </div>
-    <div class="inv-tagline">Той шақыруы · 2026</div>
-    <div class="inv-parents">Асылбек & Сәндігүл</div>
+    <div class="inv-tagline">Құда-сөндіктерінің қызмет ету салтысы · 2026</div>
+    <div class="inv-parents">Асылбек & Сәндігүл | Серік & Айгүл</div>
   </div>
 
   <!-- Timer -->
@@ -379,12 +389,16 @@
       <span class="inv-detail-icon">📍</span>
       <div class="inv-detail-text">
         <strong>«Ералхан Ата» тойханасы</strong>
-        Түркістан облысы, Қазығұрт ауданы, Сынтас ауылы
+        Түркістан облысы, Қазығұрт ауданы, Қарабау ауылдық округі, Сынтас ауылы
       </div>
     </div>
     <div style="text-align:center">
       <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка қосу</button>
-      <button class="inv-map-btn" onclick="openMap()">КАРТА</button>
+    </div>
+    <div class="inv-map-buttons">
+      <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/org/213397209233?si=xhznaa6fmmw7jx3rwrznz2qmpg', '_blank')">Yandex Maps</button>
+      <button class="inv-map-btn" onclick="window.open('https://2gis.kz/geo/70030076202454552', '_blank')">2GIS</button>
+      <button class="inv-map-btn" onclick="window.open('https://maps.google.com/?q=Ералхан+Ата+Сынтас', '_blank')">Google Maps</button>
     </div>
   </div>
 
@@ -429,14 +443,8 @@
     if (!name) { err.textContent = 'Аты-жөніңізді енгізіңіз'; return; }
     if (!attendance) { err.textContent = 'Қатысу түрін таңдаңыз'; return; }
     var msg = '🎉 ЖАҢА ЖАУАП%0A👤 Қонақ: ' + encodeURIComponent(name) + '%0A✅ Қатысу: ' + encodeURIComponent(attendance);
-    var phone = '77071234567'; // ← замени на реальный номер
+    var phone = '77056209493';
     window.open('https://wa.me/' + phone + '?text=' + msg, '_blank');
-  }
-
-  function openMap() {
-    // Плейсхолдер для ссылки на карту (Google Maps/2GIS)
-    var mapUrl = 'https://maps.google.com/?q=Syntas,+Qazygurt,+Turkistan'; // пример
-    window.open(mapUrl, '_blank');
   }
 
   var audio = document.getElementById('bg-music');
