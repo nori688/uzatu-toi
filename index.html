@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ізет Серік | Шақыру</title>
+    <style>
+        :root {
+            --bg: #FDF8F4;
+            --text: #333333;
+            --heading: #B8860B;
+            --accent: #D4AF37;
+            --btn-bg: #C9A96E;
+            --btn-hover: #B8860B;
+            --card-bg: #FFFFFF;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --font: 'Georgia', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: var(--heading);
+            text-align: center;
+        }
+        h1 { font-size: 2.2rem; margin-bottom: 10px; }
+        h2 { font-size: 1.6rem; margin-bottom: 16px; }
+        .photo-frame {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .photo-frame img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: var(--radius);
+            border: 4px solid var(--accent);
+            display: block;
+            margin: 0 auto;
+        }
+        .timer-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .timer-item {
+            background: transparent;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 10px 14px;
+            min-width: 65px;
+        }
+        .timer-item span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        .timer-item .label {
+            font-size: 0.8rem;
+            color: var(--text);
+            margin-top: 2px;
+        }
+        .info p {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .music-btn {
+            display: inline-block;
+            background: var(--btn-bg);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 12px auto;
+            text-align: center;
+            width: auto;
+        }
+        .music-btn:hover { background: var(--btn-hover); }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: var(--heading);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            color: var(--text);
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            accent-color: var(--heading);
+            width: 18px;
+            height: 18px;
+        }
+        .submit-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .submit-btn:hover { background: var(--btn-hover); }
+        .parents {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--heading);
+            margin: 12px 0;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        @media (min-width: 600px) {
+            .photo-frame img { max-width: 360px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Имя -->
+        <div class="card fade-in">
+            <h1>Ізет Серік</h1>
+            <div class="photo-frame">
+                <img src="images/couple.webp" alt="Ізет Серік" loading="lazy">
+            </div>
+            <div class="parents">Асылбек & Сәндігүл</div>
+        </div>
+
+        <!-- Таймер -->
+        <div class="card fade-in">
+            <h2>Санақ</h2>
+            <div id="timer" class="timer-box">
+                <div class="timer-item"><span id="days">00</span><span class="label">күн</span></div>
+                <div class="timer-item"><span id="hours">00</span><span class="label">сағат</span></div>
+                <div class="timer-item"><span id="minutes">00</span><span class="label">минут</span></div>
+                <div class="timer-item"><span id="seconds">00</span><span class="label">секунд</span></div>
+            </div>
+        </div>
+
+        <!-- Детали -->
+        <div class="card fade-in">
+            <p><strong>🗓️ 22 маусым 2026 жыл</strong></p>
+            <p><strong>🕖 19:00</strong></p>
+            <p><strong>📍 Асыл арман</strong><br>Шымкент, Тауке хан даңғылы 77</p>
+            <div style="text-align: center;">
+                <button id="music-toggle" class="music-btn">🔇 Музыка қосу</button>
+            </div>
+        </div>
+
+        <!-- RSVP -->
+        <div class="card fade-in">
+            <h2>Келесіз бе?</h2>
+            <form id="rsvp-form">
+                <div class="form-group">
+                    <label for="guest-name">Қонақтың аты-жөні</label>
+                    <input type="text" id="guest-name" placeholder="Есіміңіз" required>
+                </div>
+                <div class="form-group">
+                    <label>Қатысу</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="attendance" value="Келемін" required> Келемін</label>
+                        <label><input type="radio" name="attendance" value="Келе алмаймын"> Келе алмаймын</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Жіберу (WhatsApp)</button>
+                <div id="form-error" class="error-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <audio id="bg-music" preload="none" loop>
+        <source src="music/toy-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Fade-in анимация при скролле
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        // Сразу показать первый блок, если он в зоне видимости
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+
+        // Таймер обратного отсчёта до 22.06.2026 19:00 UTC+5 (Шымкент)
+        function updateTimer() {
+            const target = new Date('2026-06-22T19:00:00+05:00').getTime();
+            const now = Date.now();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Музыка
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        let musicPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (musicPlaying) {
+                audio.pause();
+                musicBtn.textContent = '🔇 Музыка қосу';
+                musicPlaying = false;
+            } else {
+                // Попытка воспроизведения, игнорируем ошибку если файла нет
+                audio.play().then(() => {
+                    musicBtn.textContent = '🔊 Музыка өшіру';
+                    musicPlaying = true;
+                }).catch(e => {
+                    // Браузер заблокировал или файл не найден — кнопка не меняется
+                    console.log('Аудио не загрузилось:', e);
+                });
+            }
+        });
+
+        // RSVP форма
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked');
+            const errorDiv = document.getElementById('form-error');
+            errorDiv.textContent = '';
+
+            if (!name) {
+                errorDiv.textContent = 'Аты-жөніңізді енгізіңіз';
+                return;
+            }
+            if (!attendance) {
+                errorDiv.textContent = 'Қатысу түрін таңдаңыз';
+                return;
+            }
+
+            const message = `🎉 ЖАҢА ЖАУАП%0A👤 Қонақ: ${encodeURIComponent(name)}%0A✅ Қатысу: ${attendance.value}`;
+            const phone = '77071234567'; // заглушка
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        });
+    </script>
+</body>
+</html>
