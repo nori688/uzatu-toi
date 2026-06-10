@@ -1,330 +1,447 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ізет Серік | Шақыру</title>
-    <style>
-        :root {
-            --bg: #FDF8F4;
-            --text: #333333;
-            --heading: #B8860B;
-            --accent: #D4AF37;
-            --btn-bg: #C9A96E;
-            --btn-hover: #B8860B;
-            --card-bg: #FFFFFF;
-            --card-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            --radius: 16px;
-            --font: 'Georgia', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 480px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--card-shadow);
-            padding: 24px 20px;
-            margin-bottom: 20px;
-        }
-        h1, h2 {
-            color: var(--heading);
-            text-align: center;
-        }
-        h1 { font-size: 2.2rem; margin-bottom: 10px; }
-        h2 { font-size: 1.6rem; margin-bottom: 16px; }
-        .photo-frame {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .photo-frame img {
-            width: 100%;
-            max-width: 320px;
-            height: auto;
-            border-radius: var(--radius);
-            border: 4px solid var(--accent);
-            display: block;
-            margin: 0 auto;
-        }
-        .timer-box {
-            text-align: center;
-            margin: 20px 0;
-        }
-        #timer {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .timer-item {
-            background: transparent;
-            border: 2px solid var(--accent);
-            border-radius: 12px;
-            padding: 10px 14px;
-            min-width: 65px;
-        }
-        .timer-item span {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent);
-            line-height: 1.2;
-        }
-        .timer-item .label {
-            font-size: 0.8rem;
-            color: var(--text);
-            margin-top: 2px;
-        }
-        .info p {
-            text-align: center;
-            margin-bottom: 8px;
-        }
-        .music-btn {
-            display: inline-block;
-            background: var(--btn-bg);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 24px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin: 12px auto;
-            text-align: center;
-            width: auto;
-        }
-        .music-btn:hover { background: var(--btn-hover); }
-        .form-group {
-            margin-bottom: 16px;
-        }
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: var(--heading);
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-        .radio-group {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .radio-group label {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: normal;
-            color: var(--text);
-            cursor: pointer;
-        }
-        input[type="radio"] {
-            accent-color: var(--heading);
-            width: 18px;
-            height: 18px;
-        }
-        .submit-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.3s;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-        .submit-btn:hover { background: var(--btn-hover); }
-        .parents {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--heading);
-            margin: 12px 0;
-        }
-        .error-message {
-            color: red;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        @media (min-width: 600px) {
-            .photo-frame img { max-width: 360px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ізет & Серік | Той шақыруы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f5ede0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      color: #3a2e1e;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+
+    .inv-wrap {
+      max-width: 440px;
+      width: 100%;
+    }
+
+    /* Hero */
+    .inv-hero {
+      background: linear-gradient(160deg, #fdf6ed 0%, #f0e3cc 100%);
+      border-radius: 20px;
+      padding: 2.5rem 1.5rem 2rem;
+      margin-bottom: 14px;
+      text-align: center;
+      border: 0.5px solid #d6c8b2;
+    }
+
+    .inv-photo-placeholder {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 3px solid #c9a96e;
+      overflow: hidden;
+    }
+
+    .inv-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      font-style: italic;
+      color: #7a5c2e;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+    }
+
+    .inv-ampersand {
+      font-size: 1.8rem;
+      color: #b8966a;
+      display: block;
+      margin: 0.2rem 0;
+    }
+
+    .inv-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #9e7d4e;
+      margin-top: 0.7rem;
+    }
+
+    .inv-parents {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: #9e7d4e;
+      margin-top: 0.6rem;
+    }
+
+    /* Cards */
+    .inv-card {
+      background: #fffaf4;
+      border: 0.5px solid #d6c8b2;
+      border-radius: 16px;
+      padding: 1.4rem 1.4rem;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .inv-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: #7a5c2e;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+
+    .inv-divider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 1rem;
+      color: #c9a96e;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+    }
+    .inv-divider::before,
+    .inv-divider::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: #d6c8b2;
+    }
+
+    /* Timer */
+    .inv-timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .inv-timer-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f5ede0;
+      border: 0.5px solid #d6c8b2;
+      border-radius: 10px;
+      padding: 10px 4px 8px;
+    }
+
+    .inv-timer-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: #7a5c2e;
+      line-height: 1;
+    }
+
+    .inv-timer-lbl {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9e7d4e;
+      margin-top: 4px;
+    }
+
+    /* Details */
+    .inv-detail-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    .inv-detail-icon {
+      font-size: 1.2rem;
+      color: #b8966a;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .inv-detail-text {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #3a2e1e;
+    }
+
+    .inv-detail-text strong {
+      font-weight: 400;
+      color: #7a5c2e;
+      display: block;
+      letter-spacing: 0.03em;
+    }
+
+    /* Music button */
+    .inv-music-btn {
+      background: transparent;
+      border: 0.5px solid #c9a96e;
+      color: #7a5c2e;
+      border-radius: 50px;
+      padding: 9px 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 0.8rem;
+    }
+    .inv-music-btn:hover { background: #f0e4d0; }
+    .inv-music-btn.playing { background: #c9a96e; color: #fff; }
+
+    /* RSVP */
+    .inv-rsvp-label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9e7d4e;
+      margin-bottom: 7px;
+      text-align: left;
+    }
+
+    .inv-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 0.5px solid #d6c8b2;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      background: #fdf6ed;
+      color: #3a2e1e;
+      margin-bottom: 1rem;
+      outline: none;
+    }
+    .inv-input:focus { border-color: #b8966a; }
+
+    .inv-radio-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .inv-radio-opt {
+      flex: 1;
+      border: 0.5px solid #d6c8b2;
+      border-radius: 10px;
+      padding: 11px 8px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: #7a5c2e;
+      background: #fdf6ed;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .inv-radio-opt.selected {
+      background: #c9a96e;
+      color: #fff;
+      border-color: #c9a96e;
+    }
+
+    .inv-submit {
+      width: 100%;
+      background: #7a5c2e;
+      color: #fdf6ed;
+      border: none;
+      border-radius: 50px;
+      padding: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .inv-submit:hover { background: #5a4220; }
+
+    .inv-error {
+      font-size: 0.78rem;
+      color: #b34040;
+      text-align: center;
+      margin-top: 10px;
+      min-height: 1rem;
+    }
+
+    .inv-footer {
+      text-align: center;
+      color: #c9a96e;
+      font-size: 1.1rem;
+      letter-spacing: 0.3em;
+      margin-top: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Имя -->
-        <div class="card fade-in">
-            <h1>Ізет Серік</h1>
-            <div class="photo-frame">
-                <img src="images/couple.webp" alt="Ізет Серік" loading="lazy">
-            </div>
-            <div class="parents">Асылбек & Сәндігүл</div>
-        </div>
+<div class="inv-wrap">
 
-        <!-- Таймер -->
-        <div class="card fade-in">
-            <h2>Санақ</h2>
-            <div id="timer" class="timer-box">
-                <div class="timer-item"><span id="days">00</span><span class="label">күн</span></div>
-                <div class="timer-item"><span id="hours">00</span><span class="label">сағат</span></div>
-                <div class="timer-item"><span id="minutes">00</span><span class="label">минут</span></div>
-                <div class="timer-item"><span id="seconds">00</span><span class="label">секунд</span></div>
-            </div>
-        </div>
+  <!-- Hero -->
+  <div class="inv-hero">
+    <svg viewBox="0 0 340 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;margin-bottom:1.2rem">
+      <path d="M170 16 C150 4, 130 26, 110 16 C90 6, 70 24, 50 16 C30 8, 15 18, 5 16" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <path d="M170 16 C190 4, 210 26, 230 16 C250 6, 270 24, 290 16 C310 8, 325 18, 335 16" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.6"/>
+      <circle cx="170" cy="16" r="3" fill="#c9a96e" opacity="0.7"/>
+      <circle cx="148" cy="10" r="2" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="192" cy="10" r="2" fill="#c9a96e" opacity="0.5"/>
+    </svg>
 
-        <!-- Детали -->
-        <div class="card fade-in">
-            <p><strong>🗓️ 22 маусым 2026 жыл</strong></p>
-            <p><strong>🕖 19:00</strong></p>
-            <p><strong>📍 Асыл арман</strong><br>Шымкент, Тауке хан даңғылы 77</p>
-            <div style="text-align: center;">
-                <button id="music-toggle" class="music-btn">🔇 Музыка қосу</button>
-            </div>
-        </div>
-
-        <!-- RSVP -->
-        <div class="card fade-in">
-            <h2>Келесіз бе?</h2>
-            <form id="rsvp-form">
-                <div class="form-group">
-                    <label for="guest-name">Қонақтың аты-жөні</label>
-                    <input type="text" id="guest-name" placeholder="Есіміңіз" required>
-                </div>
-                <div class="form-group">
-                    <label>Қатысу</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="attendance" value="Келемін" required> Келемін</label>
-                        <label><input type="radio" name="attendance" value="Келе алмаймын"> Келе алмаймын</label>
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Жіберу (WhatsApp)</button>
-                <div id="form-error" class="error-message"></div>
-            </form>
-        </div>
+    <div class="inv-photo-placeholder">
+      <svg viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <circle cx="95" cy="95" r="95" fill="#e8ddd0"/>
+        <circle cx="95" cy="95" r="93" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.4"/>
+        <!-- Dress (woman) -->
+        <path d="M56 175 Q64 148 76 130 Q88 148 96 175Z" fill="#c9a96e" opacity="0.42"/>
+        <rect x="70" y="94" width="14" height="37" rx="6" fill="#b8966a" opacity="0.48"/>
+        <circle cx="77" cy="83" r="13" fill="#d4a574" opacity="0.72"/>
+        <ellipse cx="77" cy="76" rx="13" ry="7" fill="#7a5c2e" opacity="0.58"/>
+        <!-- Bouquet -->
+        <circle cx="85" cy="116" r="9" fill="#e8a0a0" opacity="0.42"/>
+        <circle cx="83" cy="114" r="5" fill="#e87070" opacity="0.38"/>
+        <circle cx="87" cy="117" r="5" fill="#f0b0b0" opacity="0.38"/>
+        <!-- Suit (man) -->
+        <path d="M98 175 L98 130 Q110 142 122 130 L122 175Z" fill="#7a5c2e" opacity="0.42"/>
+        <rect x="100" y="94" width="18" height="37" rx="5" fill="#8c7155" opacity="0.48"/>
+        <circle cx="109" cy="83" r="13" fill="#d4a574" opacity="0.72"/>
+        <ellipse cx="109" cy="76" rx="11" ry="6" fill="#5a3e22" opacity="0.58"/>
+        <path d="M107 104 L109 118 L111 104Z" fill="#c9a96e" opacity="0.58"/>
+        <!-- Ring -->
+        <circle cx="93" cy="112" r="3.5" fill="none" stroke="#c9a96e" stroke-width="1.5" opacity="0.8"/>
+        <!-- Corner dots -->
+        <circle cx="22" cy="22" r="4" fill="#c9a96e" opacity="0.22"/>
+        <circle cx="168" cy="22" r="4" fill="#c9a96e" opacity="0.22"/>
+        <circle cx="22" cy="168" r="4" fill="#c9a96e" opacity="0.22"/>
+        <circle cx="168" cy="168" r="4" fill="#c9a96e" opacity="0.22"/>
+      </svg>
     </div>
 
-    <audio id="bg-music" preload="none" loop>
-        <source src="music/toy-music.mp3" type="audio/mpeg">
-    </audio>
+    <div class="inv-names">
+      Ізет
+      <span class="inv-ampersand">✦</span>
+      Серік
+    </div>
+    <div class="inv-tagline">Той шақыруы · 2026</div>
+    <div class="inv-parents">Асылбек & Сәндігүл</div>
+  </div>
 
-    <script>
-        // Fade-in анимация при скролле
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
+  <!-- Timer -->
+  <div class="inv-card">
+    <div class="inv-section-title">Той басталғанға дейін</div>
+    <div class="inv-divider">✦ ✦ ✦</div>
+    <div class="inv-timer">
+      <div class="inv-timer-item"><span class="inv-timer-num" id="days">00</span><span class="inv-timer-lbl">күн</span></div>
+      <div class="inv-timer-item"><span class="inv-timer-num" id="hours">00</span><span class="inv-timer-lbl">сағат</span></div>
+      <div class="inv-timer-item"><span class="inv-timer-num" id="minutes">00</span><span class="inv-timer-lbl">минут</span></div>
+      <div class="inv-timer-item"><span class="inv-timer-num" id="seconds">00</span><span class="inv-timer-lbl">секунд</span></div>
+    </div>
+  </div>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        // Сразу показать первый блок, если он в зоне видимости
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        });
+  <!-- Details -->
+  <div class="inv-card">
+    <div class="inv-section-title">Той мәліметтері</div>
+    <div class="inv-divider">✦ ✦ ✦</div>
+    <div class="inv-detail-row">
+      <span class="inv-detail-icon">🗓</span>
+      <div class="inv-detail-text"><strong>22 маусым 2026 жыл</strong>Жексенбі</div>
+    </div>
+    <div class="inv-detail-row">
+      <span class="inv-detail-icon">🕖</span>
+      <div class="inv-detail-text"><strong>19:00</strong>Есіктер ашылады</div>
+    </div>
+    <div class="inv-detail-row">
+      <span class="inv-detail-icon">📍</span>
+      <div class="inv-detail-text"><strong>Асыл Арман</strong>Шымкент, Тауке хан даңғылы 77</div>
+    </div>
+    <div style="text-align:center">
+      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка қосу</button>
+    </div>
+  </div>
 
-        // Таймер обратного отсчёта до 22.06.2026 19:00 UTC+5 (Шымкент)
-        function updateTimer() {
-            const target = new Date('2026-06-22T19:00:00+05:00').getTime();
-            const now = Date.now();
-            const diff = target - now;
+  <!-- RSVP -->
+  <div class="inv-card">
+    <div class="inv-section-title">Келесіз бе?</div>
+    <div class="inv-divider">✦ ✦ ✦</div>
 
-            if (diff <= 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                return;
-            }
+    <label class="inv-rsvp-label" for="guest-name">Қонақтың аты-жөні</label>
+    <input type="text" class="inv-input" id="guest-name" placeholder="Есіміңіз">
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    <label class="inv-rsvp-label">Қатысу</label>
+    <div class="inv-radio-row">
+      <div class="inv-radio-opt" id="opt-yes" onclick="selectAttendance('Келемін')">Келемін</div>
+      <div class="inv-radio-opt" id="opt-no" onclick="selectAttendance('Келе алмаймын')">Келе алмаймын</div>
+    </div>
 
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
+    <button class="inv-submit" onclick="submitRsvp()">Жіберу · WhatsApp</button>
+    <div class="inv-error" id="form-error"></div>
+  </div>
 
-        // Музыка
-        const audio = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-toggle');
-        let musicPlaying = false;
+  <div class="inv-footer">✦ · ✦ · ✦</div>
+</div>
 
-        musicBtn.addEventListener('click', () => {
-            if (musicPlaying) {
-                audio.pause();
-                musicBtn.textContent = '🔇 Музыка қосу';
-                musicPlaying = false;
-            } else {
-                // Попытка воспроизведения, игнорируем ошибку если файла нет
-                audio.play().then(() => {
-                    musicBtn.textContent = '🔊 Музыка өшіру';
-                    musicPlaying = true;
-                }).catch(e => {
-                    // Браузер заблокировал или файл не найден — кнопка не меняется
-                    console.log('Аудио не загрузилось:', e);
-                });
-            }
-        });
+<audio id="bg-music" preload="none" loop>
+  <source src="music/toy-music.mp3" type="audio/mpeg">
+</audio>
 
-        // RSVP форма
-        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('guest-name').value.trim();
-            const attendance = document.querySelector('input[name="attendance"]:checked');
-            const errorDiv = document.getElementById('form-error');
-            errorDiv.textContent = '';
+<script>
+  var attendance = null;
 
-            if (!name) {
-                errorDiv.textContent = 'Аты-жөніңізді енгізіңіз';
-                return;
-            }
-            if (!attendance) {
-                errorDiv.textContent = 'Қатысу түрін таңдаңыз';
-                return;
-            }
+  function selectAttendance(val) {
+    attendance = val;
+    document.getElementById('opt-yes').classList.toggle('selected', val === 'Келемін');
+    document.getElementById('opt-no').classList.toggle('selected', val === 'Келе алмаймын');
+  }
 
-            const message = `🎉 ЖАҢА ЖАУАП%0A👤 Қонақ: ${encodeURIComponent(name)}%0A✅ Қатысу: ${attendance.value}`;
-            const phone = '77071234567'; // заглушка
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        });
-    </script>
+  function submitRsvp() {
+    var name = document.getElementById('guest-name').value.trim();
+    var err = document.getElementById('form-error');
+    err.textContent = '';
+    if (!name) { err.textContent = 'Аты-жөніңізді енгізіңіз'; return; }
+    if (!attendance) { err.textContent = 'Қатысу түрін таңдаңыз'; return; }
+    var msg = '🎉 ЖАҢА ЖАУАП%0A👤 Қонақ: ' + encodeURIComponent(name) + '%0A✅ Қатысу: ' + encodeURIComponent(attendance);
+    var phone = '77071234567'; // ← замени на реальный номер
+    window.open('https://wa.me/' + phone + '?text=' + msg, '_blank');
+  }
+
+  var audio = document.getElementById('bg-music');
+  var btn = document.getElementById('music-toggle');
+  var playing = false;
+  btn.addEventListener('click', function() {
+    if (playing) {
+      audio.pause();
+      btn.innerHTML = '♪ &nbsp;Музыка қосу';
+      btn.classList.remove('playing');
+      playing = false;
+    } else {
+      audio.play().then(function() {
+        btn.innerHTML = '♪ &nbsp;Музыка өшіру';
+        btn.classList.add('playing');
+        playing = true;
+      }).catch(function() {});
+    }
+  });
+
+  function updateTimer() {
+    var target = new Date('2026-06-22T19:00:00+05:00').getTime();
+    var diff = Math.max(0, target - Date.now());
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent    = String(d).padStart(2,'0');
+    document.getElementById('hours').textContent   = String(h).padStart(2,'0');
+    document.getElementById('minutes').textContent = String(m).padStart(2,'0');
+    document.getElementById('seconds').textContent = String(s).padStart(2,'0');
+  }
+  setInterval(updateTimer, 1000);
+  updateTimer();
+</script>
 </body>
 </html>
