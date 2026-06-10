@@ -380,7 +380,7 @@
       </div>
     </div>
     <div style="text-align:center">
-      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка қосу</button>
+      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка өшіру</button>
     </div>
     <div class="inv-map-buttons">
       <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/?ll=69.568271%2C41.897649&z=16&mode=search&text=41.897649%2C69.568271', '_blank')">Yandex Maps</button>
@@ -410,7 +410,7 @@
   <div class="inv-footer">✦ · ✦ · ✦</div>
 </div>
 
-<audio id="bg-music" preload="none" loop>
+<audio id="bg-music" preload="none" loop autoplay>
   <source src="music/toy-music.mp3" type="audio/mpeg">
 </audio>
 
@@ -436,7 +436,16 @@
 
   var audio = document.getElementById('bg-music');
   var btn = document.getElementById('music-toggle');
-  var playing = false;
+  var playing = true;
+  
+  audio.volume = 0.5;
+  
+  audio.play().catch(function() {
+    playing = false;
+    btn.innerHTML = '♪ &nbsp;Музыка қосу';
+    btn.classList.remove('playing');
+  });
+  
   btn.addEventListener('click', function() {
     if (playing) {
       audio.pause();
