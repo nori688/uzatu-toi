@@ -362,7 +362,7 @@
 
   <!-- Details -->
   <div class="inv-card">
-    <div class="inv-section-title">Той мәліметтері</div>
+    <div class="inv-section-title">Той мә��іметтері</div>
     <div class="inv-divider">✦ ✦ ✦</div>
     <div class="inv-detail-row">
       <span class="inv-detail-icon">🗓</span>
@@ -380,7 +380,7 @@
       </div>
     </div>
     <div style="text-align:center">
-      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка өшіру</button>
+      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка</button>
     </div>
     <div class="inv-map-buttons">
       <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/?ll=69.568271%2C41.897649&z=16&mode=search&text=41.897649%2C69.568271', '_blank')">Yandex Maps</button>
@@ -454,11 +454,9 @@
     if (audio.paused) {
       audio.play();
       btn.classList.remove('playing');
-      btn.textContent = '♪ \xa0Музыка өшіру';
     } else {
       audio.pause();
       btn.classList.add('playing');
-      btn.textContent = '♪ \xa0Музыка ойнату';
     }
   }
 
