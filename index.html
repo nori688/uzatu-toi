@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ұзату той</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Marck+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #fdfaf6 0%, #f4f1ea 100%); /* Жылы сүт түсі */
@@ -95,12 +95,13 @@
     .inv-names {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 3.6rem;
-      font-weight: 400;
+      font-size: 3.8rem; /* Сәл үлкейтілді */
+      font-weight: 600; /* Қалыңдығы қосылды, каллиграфия анық көрінуі үшін */
       color: var(--accent);
       line-height: 1.1;
       letter-spacing: 0.02em;
       margin-bottom: 0.8rem;
+      text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1); /* Жеңіл көлеңке тереңдік береді */
     }
 
     .inv-tagline {
@@ -549,6 +550,16 @@
   }
 
   document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+
+  // Парақша жабылғанда немесе басқа вкладкаға өткенде музыканы тоқтату
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      audio.pause();
+      musicBtn.classList.add('paused');
+      musicBtn.classList.remove('playing');
+    }
+  });
+
   updateTimer();
   setInterval(updateTimer, 1000);
 </script>
