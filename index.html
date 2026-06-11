@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ұзату той</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #fdfaf6 0%, #f4f1ea 100%); /* Жылы сүт түсі */
@@ -24,11 +24,10 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 400;
       color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
       min-height: 100vh;
       padding: 24px 12px 48px;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
     
     /* Легкая анимация появления */
@@ -46,6 +45,7 @@
     .inv-wrap {
       max-width: 440px;
       width: 100%;
+      margin: 0 auto;
     }
 
     /* Применяем анимацию к карточкам с задержкой */
@@ -93,13 +93,15 @@
     }
 
     .inv-names {
-      font-family: 'Marck Script', cursive;
-      font-size: 3.2rem;
-      font-weight: 400;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 3.8rem; /* Сәл үлкейтілді */
+      font-weight: 600; /* Қалыңдығы қосылды, каллиграфия анық көрінуі үшін */
       color: var(--accent);
       line-height: 1.1;
       letter-spacing: 0.02em;
       margin-bottom: 0.8rem;
+      text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1); /* Жеңіл көлеңке тереңдік береді */
     }
 
     .inv-tagline {
@@ -133,9 +135,10 @@
     }
 
     .inv-section-title {
-      font-family: 'Marck Script', cursive;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
       font-size: 1.8rem;
-      font-weight: 400;
       color: var(--accent);
       margin-bottom: 0.9rem;
       letter-spacing: 0.04em;
@@ -246,6 +249,13 @@
       font-size: 1.2rem;
     }
     
+    @keyframes musicSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .inv-music-fixed.playing {
+      animation: musicSpin 4s linear infinite;
+    }
     .inv-music-fixed.paused { color: var(--accent-muted); }
 
     /* Map buttons */
@@ -442,7 +452,7 @@
 
 <button class="inv-music-fixed" id="music-toggle">♪</button>
 
-<audio id="bg-music" preload="none" loop autoplay>
+<audio id="bg-music" preload="auto" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -454,20 +464,26 @@
 
   // Функция для запуска музыки при любом первом действии
   function initMusic() {
-    if (!musicStarted) {
-      audio.play().catch(() => {
-        console.log("Автоплей заблокирован браузером");
-      });
+    if (musicStarted) return;
+    
+    audio.play().then(() => {
       musicStarted = true;
-      // Удаляем слушатели после первого срабатывания
+      musicBtn.classList.remove('paused');
+      musicBtn.classList.add('playing');
+      // Удаляем все временные слушатели
       document.removeEventListener('click', initMusic);
       document.removeEventListener('touchstart', initMusic);
-      musicBtn.classList.remove('paused');
-    }
+      document.removeEventListener('touchend', initMusic);
+    }).catch(() => {
+      // Браузер бұғаттаса, келесі іс-әрекетті күтеміз
+      console.log("Waiting for user gesture...");
+    });
   }
 
+  // Ең сенімді оқиғалар жиынтығы
   document.addEventListener('click', initMusic);
   document.addEventListener('touchstart', initMusic);
+  document.addEventListener('touchend', initMusic);
 
   function selectAttendance(val) {
     attendance = val;
@@ -504,9 +520,11 @@
     if (audio.paused) {
       audio.play();
       musicBtn.classList.remove('paused');
+      musicBtn.classList.add('playing');
     } else {
       audio.pause();
       musicBtn.classList.add('paused');
+      musicBtn.classList.remove('playing');
     }
   }
 
@@ -532,6 +550,16 @@
   }
 
   document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+
+  // Парақша жабылғанда немесе басқа вкладкаға өткенде музыканы тоқтату
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      audio.pause();
+      musicBtn.classList.add('paused');
+      musicBtn.classList.remove('playing');
+    }
+  });
+
   updateTimer();
   setInterval(updateTimer, 1000);
 </script>
