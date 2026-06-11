@@ -225,23 +225,28 @@
     }
 
     /* Music button */
-    .inv-music-btn {
-      background: transparent;
+    .inv-music-fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
       border: 1px solid var(--accent-muted);
-      color: var(--accent-dark);
-      border-radius: var(--radius);
-      padding: 11px 28px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, background 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 1.2rem;
     }
-    .inv-music-btn:hover { background: #faf5f6; }
-    .inv-music-btn.playing { background: var(--accent); color: #FFFFFF; }
+    
+    .inv-music-fixed.paused { color: var(--accent-muted); }
 
     /* Map buttons */
     .inv-map-buttons {
@@ -407,9 +412,6 @@
         Түркістан облысы, Қазығұрт ауданы, Қарабау ауылдық округі, Сынтас ауылы
       </div>
     </div>
-    <div style="text-align:center">
-      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка</button>
-    </div>
     <div class="inv-map-buttons">
       <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/?ll=69.568271%2C41.897649&z=16&mode=search&text=41.897649%2C69.568271', '_blank')">Yandex Maps</button>
       <button class="inv-map-btn" onclick="window.open('https://2gis.kz/geo/69.568271,41.897649', '_blank')">2GIS</button>
@@ -438,12 +440,34 @@
   <div class="inv-footer">✦ · ✦ · ✦</div>
 </div>
 
+<button class="inv-music-fixed" id="music-toggle">♪</button>
+
 <audio id="bg-music" preload="none" loop autoplay>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
   var attendance = null;
+  var musicStarted = false;
+  const audio = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-toggle');
+
+  // Функция для запуска музыки при любом первом действии
+  function initMusic() {
+    if (!musicStarted) {
+      audio.play().catch(() => {
+        console.log("Автоплей заблокирован браузером");
+      });
+      musicStarted = true;
+      // Удаляем слушатели после первого срабатывания
+      document.removeEventListener('click', initMusic);
+      document.removeEventListener('touchstart', initMusic);
+      musicBtn.classList.remove('paused');
+    }
+  }
+
+  document.addEventListener('click', initMusic);
+  document.addEventListener('touchstart', initMusic);
 
   function selectAttendance(val) {
     attendance = val;
@@ -476,15 +500,13 @@
   }
 
   function toggleMusic() {
-    const audio = document.getElementById('bg-music');
-    const btn = document.getElementById('music-toggle');
-    
+    musicStarted = true; // Если нажали кнопку, автозапуск уже не нужен
     if (audio.paused) {
       audio.play();
-      btn.classList.remove('playing');
+      musicBtn.classList.remove('paused');
     } else {
       audio.pause();
-      btn.classList.add('playing');
+      musicBtn.classList.add('paused');
     }
   }
 
