@@ -24,11 +24,10 @@
       font-family: 'Montserrat', sans-serif;
       font-weight: 400;
       color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
       min-height: 100vh;
       padding: 24px 12px 48px;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
     }
     
     /* Легкая анимация появления */
@@ -46,6 +45,7 @@
     .inv-wrap {
       max-width: 440px;
       width: 100%;
+      margin: 0 auto;
     }
 
     /* Применяем анимацию к карточкам с задержкой */
@@ -246,6 +246,13 @@
       font-size: 1.2rem;
     }
     
+    @keyframes musicSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .inv-music-fixed.playing {
+      animation: musicSpin 4s linear infinite;
+    }
     .inv-music-fixed.paused { color: var(--accent-muted); }
 
     /* Map buttons */
@@ -442,7 +449,7 @@
 
 <button class="inv-music-fixed" id="music-toggle">♪</button>
 
-<audio id="bg-music" preload="none" loop autoplay>
+<audio id="bg-music" preload="auto" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
@@ -454,20 +461,26 @@
 
   // Функция для запуска музыки при любом первом действии
   function initMusic() {
-    if (!musicStarted) {
-      audio.play().catch(() => {
-        console.log("Автоплей заблокирован браузером");
-      });
+    if (musicStarted) return;
+    
+    audio.play().then(() => {
       musicStarted = true;
-      // Удаляем слушатели после первого срабатывания
+      musicBtn.classList.remove('paused');
+      musicBtn.classList.add('playing');
+      // Удаляем все временные слушатели
       document.removeEventListener('click', initMusic);
       document.removeEventListener('touchstart', initMusic);
-      musicBtn.classList.remove('paused');
-    }
+      document.removeEventListener('touchend', initMusic);
+    }).catch(() => {
+      // Браузер бұғаттаса, келесі іс-әрекетті күтеміз
+      console.log("Waiting for user gesture...");
+    });
   }
 
+  // Ең сенімді оқиғалар жиынтығы
   document.addEventListener('click', initMusic);
   document.addEventListener('touchstart', initMusic);
+  document.addEventListener('touchend', initMusic);
 
   function selectAttendance(val) {
     attendance = val;
@@ -504,9 +517,11 @@
     if (audio.paused) {
       audio.play();
       musicBtn.classList.remove('paused');
+      musicBtn.classList.add('playing');
     } else {
       audio.pause();
       musicBtn.classList.add('paused');
+      musicBtn.classList.remove('playing');
     }
   }
 
