@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ұзату той</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #F5F0ED 0%, #F0DFE5 50%, #EFE8F0 100%);
+      --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
       --card-bg: #FFFFFF;
       --text: #2E2E2E;
-      --accent: #E8A0A8;
-      --accent-muted: #D4B5BB;
-      --radius: 2px;
+      --accent: #b88a7e;
+      --accent-dark: #8e6d63;
+      --accent-muted: #d4b5bb;
+      --radius: 12px;
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,44 +30,72 @@
       min-height: 100vh;
       padding: 24px 12px 48px;
     }
+    
+    /* Легкая анимация появления */
+    @keyframes reveal {
+      from { 
+        opacity: 0; 
+        transform: translate3d(0, 20px, 0); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translate3d(0, 0, 0); 
+      }
+    }
 
     .inv-wrap {
       max-width: 440px;
       width: 100%;
     }
 
-    /* Hero */
+    /* Применяем анимацию к карточкам с задержкой */
+    .inv-hero, .inv-card {
+      opacity: 0;
+      animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .anim-delay-1 { animation-delay: 0.2s; }
+    .anim-delay-2 { animation-delay: 0.4s; }
+    .anim-delay-3 { animation-delay: 0.6s; }
+
     .inv-hero {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 1.2rem;
+      padding: 1.5rem;
       margin-bottom: 18px;
       text-align: center;
-      border: 1px solid #F0D5DB;
-      box-shadow: 0 2px 8px rgba(232, 160, 168, 0.1);
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    
+    .inv-hero::after {
+      content: '';
+      position: absolute;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      border: 1px solid rgba(184, 138, 126, 0.3);
+      border-radius: calc(var(--radius) - 4px);
+      pointer-events: none;
     }
 
     /* Main Banner */
     .inv-main-banner {
       width: 100%;
-      border-radius: var(--radius);
+      border-radius: 8px;
       overflow: hidden;
       margin-bottom: 1.8rem;
-      border: 1px solid #F0D5DB;
     }
 
     .inv-main-banner img {
       width: 100%;
       height: auto;
       display: block;
-      opacity: 1;
+      transition: transform 0.5s ease;
     }
 
     .inv-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
+      font-family: 'Marck Script', cursive;
+      font-size: 3.2rem;
       font-weight: 400;
-      font-style: italic;
       color: var(--accent);
       line-height: 1.1;
       letter-spacing: 0.02em;
@@ -95,19 +124,18 @@
     /* Cards */
     .inv-card {
       background: var(--card-bg);
-      border: 1px solid #F0D5DB;
       border-radius: var(--radius);
       padding: 1.6rem 1.4rem;
       margin-bottom: 18px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(232, 160, 168, 0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.02);
     }
 
     .inv-section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
+      font-family: 'Marck Script', cursive;
+      font-size: 1.8rem;
       font-weight: 400;
-      font-style: italic;
       color: var(--accent);
       margin-bottom: 0.9rem;
       letter-spacing: 0.04em;
@@ -120,13 +148,13 @@
       margin: 0 0 1.2rem;
       color: var(--accent-muted);
       font-size: 10px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.3em;
     }
     .inv-divider::before,
     .inv-divider::after {
       content: '';
       flex: 1;
-      height: 0.5px;
+      height: 1px;
       background: #E8D5DB;
     }
 
@@ -183,7 +211,7 @@
 
     .inv-detail-text {
       font-size: 0.95rem;
-      line-height: 1.7;
+      line-height: 1.6;
       color: var(--text);
       font-weight: 400;
     }
@@ -200,7 +228,7 @@
     .inv-music-btn {
       background: transparent;
       border: 1px solid var(--accent-muted);
-      color: var(--accent);
+      color: var(--accent-dark);
       border-radius: var(--radius);
       padding: 11px 28px;
       font-family: 'Montserrat', sans-serif;
@@ -212,7 +240,7 @@
       transition: background 0.2s, color 0.2s;
       margin-top: 1rem;
     }
-    .inv-music-btn:hover { background: #F5E8EB; }
+    .inv-music-btn:hover { background: #faf5f6; }
     .inv-music-btn.playing { background: var(--accent); color: #FFFFFF; }
 
     /* Map buttons */
@@ -226,7 +254,7 @@
     .inv-map-btn {
       background: transparent;
       border: 1px solid var(--accent-muted);
-      color: var(--text);
+      color: var(--accent-dark);
       border-radius: var(--radius);
       padding: 11px 12px;
       font-family: 'Montserrat', sans-serif;
@@ -263,7 +291,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: 0.95rem;
       font-weight: 400;
-      background: #FFF9F7;
+      background: #fdfdfd;
       color: var(--text);
       margin-bottom: 1.2rem;
       outline: none;
@@ -286,7 +314,7 @@
       cursor: pointer;
       font-size: 0.9rem;
       color: var(--text);
-      background: #FFF9F7;
+      background: #fdfdfd;
       transition: all 0.2s;
       user-select: none;
       font-weight: 500;
@@ -312,7 +340,7 @@
       cursor: pointer;
       transition: background 0.2s;
     }
-    .inv-submit:hover { background: #D68B98; }
+    .inv-submit:hover { background: var(--accent-dark); }
 
     .inv-error {
       font-size: 0.85rem;
@@ -338,7 +366,7 @@
   <!-- Hero -->
   <div class="inv-hero">
     <div class="inv-main-banner">
-      <img src="https://i.pinimg.com/736x/16/5a/f3/165af30f39522b73da422879ce54cd05.jpg" alt="Ұзату той">
+      <img src="photo.jpeg" alt="Ұзату той">
     </div>
 
     <div class="inv-names">
@@ -349,7 +377,7 @@
   </div>
 
   <!-- Timer -->
-  <div class="inv-card">
+  <div class="inv-card anim-delay-1">
     <div class="inv-section-title">Той басталғанға дейін</div>
     <div class="inv-divider">✦ ✦ ✦</div>
     <div class="inv-timer">
@@ -361,7 +389,7 @@
   </div>
 
   <!-- Details -->
-  <div class="inv-card">
+  <div class="inv-card anim-delay-2">
     <div class="inv-section-title">Той мәліметтері</div>
     <div class="inv-divider">✦ ✦ ✦</div>
     <div class="inv-detail-row">
@@ -390,7 +418,7 @@
   </div>
 
   <!-- RSVP -->
-  <div class="inv-card">
+  <div class="inv-card anim-delay-3">
     <div class="inv-section-title">Келесіз бе?</div>
     <div class="inv-divider">✦ ✦ ✦</div>
 
@@ -411,7 +439,7 @@
 </div>
 
 <audio id="bg-music" preload="none" loop autoplay>
-  <source src="Ernar_Amandyq_-_Keipker_79407191.mp3--online-audio-convert.com.mp3" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
