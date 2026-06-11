@@ -8,12 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      --bg-gradient: linear-gradient(135deg, #fdfaf6 0%, #f4f1ea 100%); /* Жылы сүт түсі */
       --card-bg: #FFFFFF;
-      --text: #2E2E2E;
-      --accent: #b88a7e;
-      --accent-dark: #8e6d63;
-      --accent-muted: #d4b5bb;
+      --text: #3a3532;
+      --accent: #a9432f; /* Терракот-қызыл */
+      --accent-dark: #823224;
+      --accent-muted: #c0c5ca; /* Күңгірт күміс */
       --radius: 12px;
     }
 
@@ -72,7 +72,7 @@
       content: '';
       position: absolute;
       top: 10px; left: 10px; right: 10px; bottom: 10px;
-      border: 1px solid rgba(184, 138, 126, 0.3);
+      border: 1px solid var(--accent-muted); /* Күміс жақтау */
       border-radius: calc(var(--radius) - 4px);
       pointer-events: none;
     }
@@ -146,7 +146,7 @@
       align-items: center;
       gap: 8px;
       margin: 0 0 1.2rem;
-      color: var(--accent-muted);
+      color: var(--accent-muted); /* Күміс бөлгіш */
       font-size: 10px;
       letter-spacing: 0.3em;
     }
@@ -155,7 +155,7 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: #E8D5DB;
+      background: var(--accent-muted);
     }
 
     /* Timer */
@@ -171,7 +171,7 @@
       align-items: center;
       background: transparent;
       border: none;
-      border-bottom: 0.5px solid #E8D5DB;
+      border-bottom: 0.5px solid var(--accent-muted);
       border-radius: 0;
       padding: 12px 4px 10px;
     }
@@ -204,7 +204,7 @@
 
     .inv-detail-icon {
       font-size: 1.3rem;
-      color: var(--accent);
+      color: #4a5568; /* Сұр-көк акцент */
       margin-top: 2px;
       flex-shrink: 0;
     }
@@ -225,23 +225,28 @@
     }
 
     /* Music button */
-    .inv-music-btn {
-      background: transparent;
+    .inv-music-fixed {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
       border: 1px solid var(--accent-muted);
-      color: var(--accent-dark);
-      border-radius: var(--radius);
-      padding: 11px 28px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      margin-top: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, background 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 1.2rem;
     }
-    .inv-music-btn:hover { background: #faf5f6; }
-    .inv-music-btn.playing { background: var(--accent); color: #FFFFFF; }
+    
+    .inv-music-fixed.paused { color: var(--accent-muted); }
 
     /* Map buttons */
     .inv-map-buttons {
@@ -286,7 +291,7 @@
     .inv-input {
       width: 100%;
       padding: 13px 14px;
-      border: 1px solid #E8D5DB;
+      border: 1px solid var(--accent-muted);
       border-radius: var(--radius);
       font-family: 'Montserrat', sans-serif;
       font-size: 0.95rem;
@@ -307,7 +312,7 @@
 
     .inv-radio-opt {
       flex: 1;
-      border: 1px solid #E8D5DB;
+      border: 1px solid var(--accent-muted);
       border-radius: var(--radius);
       padding: 12px 8px;
       text-align: center;
@@ -407,9 +412,6 @@
         Түркістан облысы, Қазығұрт ауданы, Қарабау ауылдық округі, Сынтас ауылы
       </div>
     </div>
-    <div style="text-align:center">
-      <button class="inv-music-btn" id="music-toggle">♪ &nbsp;Музыка</button>
-    </div>
     <div class="inv-map-buttons">
       <button class="inv-map-btn" onclick="window.open('https://yandex.ru/maps/?ll=69.568271%2C41.897649&z=16&mode=search&text=41.897649%2C69.568271', '_blank')">Yandex Maps</button>
       <button class="inv-map-btn" onclick="window.open('https://2gis.kz/geo/69.568271,41.897649', '_blank')">2GIS</button>
@@ -438,12 +440,34 @@
   <div class="inv-footer">✦ · ✦ · ✦</div>
 </div>
 
+<button class="inv-music-fixed" id="music-toggle">♪</button>
+
 <audio id="bg-music" preload="none" loop autoplay>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
   var attendance = null;
+  var musicStarted = false;
+  const audio = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-toggle');
+
+  // Функция для запуска музыки при любом первом действии
+  function initMusic() {
+    if (!musicStarted) {
+      audio.play().catch(() => {
+        console.log("Автоплей заблокирован браузером");
+      });
+      musicStarted = true;
+      // Удаляем слушатели после первого срабатывания
+      document.removeEventListener('click', initMusic);
+      document.removeEventListener('touchstart', initMusic);
+      musicBtn.classList.remove('paused');
+    }
+  }
+
+  document.addEventListener('click', initMusic);
+  document.addEventListener('touchstart', initMusic);
 
   function selectAttendance(val) {
     attendance = val;
@@ -476,15 +500,13 @@
   }
 
   function toggleMusic() {
-    const audio = document.getElementById('bg-music');
-    const btn = document.getElementById('music-toggle');
-    
+    musicStarted = true; // Если нажали кнопку, автозапуск уже не нужен
     if (audio.paused) {
       audio.play();
-      btn.classList.remove('playing');
+      musicBtn.classList.remove('paused');
     } else {
       audio.pause();
-      btn.classList.add('playing');
+      musicBtn.classList.add('paused');
     }
   }
 
